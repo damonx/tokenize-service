@@ -1,0 +1,107 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Tokenization Service API",
+        "description": "Simple in-memory tokenization service for account numbers.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080",
+            "description": "Local development server"
+        }
+    ],
+    "paths": {
+        "/tokenize": {
+            "post": {
+                "summary": "Tokenize account numbers",
+                "description": "Replaces sensitive account numbers with random, non-guessable tokens.",
+                "operationId": "tokenize",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "minItems": 1,
+                                "maxItems": 50,
+                                "items": {
+                                    "type": "string",
+                                    "pattern": "^(d{4}[-s]?){3}d{4}$",
+                                    "example": "4111-1111-1111-1111"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully tokenized account numbers",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z0-9]{32}$",
+                                        "example": "ZKeV4jkong4dGTkaVHlCzE5ukKqVp4zf"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/detokenize": {
+            "post": {
+                "summary": "Detokenize tokens",
+                "description": "Resolves tokens back to their original account numbers.",
+                "operationId": "detokenize",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "minItems": 1,
+                                "maxItems": 50,
+                                "items": {
+                                    "type": "string",
+                                    "pattern": "^[A-Za-z0-9]{32}$",
+                                    "example": "ZKeV4jkong4dGTkaVHlCzE5ukKqVp4zf"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully detokenized tokens",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "pattern": "^(d{4}[-s]?){3}d{4}$",
+                                        "example": "4111-1111-1111-1111"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    },
+                    "404": {
+                        "description": "Token not found"
+                    }
+                }
+            }
+        }
+    }
+}
