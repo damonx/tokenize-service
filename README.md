@@ -135,7 +135,7 @@ chmod +x gradlew
 
 The application will start on:
 
-```
+```bash
 http://localhost:8080
 ```
 
@@ -192,7 +192,7 @@ curl -Sv localhost:8080/detokenize -H "Content-Type: application/json" -d '["uS8
 ```
 
 * Case C: token NOT FOUND error
-```base
+```bash
 curl -Sv localhost:8080/detokenize -H "Content-Type: application/json" -d '["GZt5XL5gmFl1gxBziER7cPQZ2tfvHvaa"]'
 * Host localhost:8080 was resolved.
 * IPv6: ::1
