@@ -249,3 +249,142 @@ curl -Sv localhost:8080/detokenize -H "Content-Type: application/json" -d '["3vD
 ```bash
 ./gradlew test
 ```
+---
+Here’s a **README-ready version**, reorganised into **Short-term / Medium-term / Long-term** phases.
+The language is concise, professional, and suitable for technical reviewers or architects.
+
+---
+
+## Improvement Roadmap for `tokenization-service`
+
+The current implementation focuses on core functionality and clarity.
+The following roadmap outlines recommended enhancements, grouped by delivery horizon.
+
+---
+
+## Short-term Improvements (Immediate / Low Effort)
+
+These changes improve API quality, maintainability, and developer experience with minimal architectural impact.
+
+### API Design & Consistency
+
+* **Adopt OpenAPI 3.0 (Swagger) as the API contract**
+
+  * Define request/response schemas, error models, and examples.
+  * Generate server-side DTOs and client SDKs from the contract.
+  * Enable frontend and downstream teams to rely on a single source of truth.
+
+* **Introduce explicit Request and Response DTOs**
+
+  * Avoid using `List<String>` directly in controller methods.
+  * Enables inclusion of metadata such as requestId, validation results, and warnings.
+
+* **Standardise API responses**
+
+  * Use a consistent response structure with:
+
+    * `status` / `code`
+    * `httpStatus`
+    * `message`
+    * `data`
+    * `errors`
+  * Align error handling with **RFC 7807 (Problem Details)**.
+
+### Validation & Error Handling
+
+* Improve validation error responses with clear, actionable messages.
+* Ensure all client errors return appropriate HTTP 4xx responses.
+
+### Documentation
+
+* Enhance Swagger documentation with example requests and responses.
+* Expand README with local development and testing instructions.
+
+---
+
+## Medium-term Improvements (Scalability & Reliability)
+
+These changes prepare the service for real-world usage, higher traffic, and operational robustness.
+
+### Security & Access Control
+
+* **Add authentication and authorisation**
+
+  * Secure endpoints using OAuth2 / OpenID Connect (e.g. JWT).
+  * Apply role- or scope-based access control.
+
+* **Enable auditing and traceability**
+
+  * Log security-sensitive actions (tokenization / detokenization).
+  * Include correlation IDs for request tracing.
+
+### Resilience & Performance
+
+* **Introduce rate limiting**
+
+  * Protect APIs from abuse and accidental overload.
+  * Implement via API Gateway, Resilience4j, or reverse proxy.
+
+* **Apply resilience patterns**
+
+  * Timeouts, retries, and circuit breakers.
+  * Fail fast when downstream dependencies are unavailable.
+
+### Testing & Quality
+
+* **Add integration tests using Testcontainers**
+
+  * Spin up real dependencies (e.g. PostgreSQL, Redis).
+  * Validate behavior in a production-like environment.
+
+* **Introduce baseline and regression performance tests**
+
+  * Ensure new changes do not degrade throughput or latency.
+
+---
+
+## Long-term Improvements (Enterprise & Production-grade)
+
+These changes support enterprise-scale deployment, compliance, and observability.
+
+### Scalability & Architecture
+
+* **Use Redis for shared state and caching**
+
+  * Enable horizontal scalability with multiple pod replicas.
+  * Support stateless application instances.
+
+* **Introduce API versioning**
+
+  * e.g. `/v1/tokenize`
+  * Allow safe evolution without breaking consumers.
+
+### Observability & Operations
+
+* **Structured logging**
+
+  * Emit logs in JSON format.
+  * Include traceId, requestId, and userId where applicable.
+
+* **Metrics and monitoring**
+
+  * Expose metrics using Micrometer and Prometheus.
+  * Monitor latency, error rates, and throughput.
+
+* **Distributed tracing**
+
+  * Integrate OpenTelemetry for end-to-end request tracing.
+
+### Compliance & Governance
+
+* **Data protection and compliance**
+
+  * Ensure sensitive data is never logged in plaintext.
+  * Encrypt data at rest and in transit.
+  * Align with PCI-DSS or equivalent regulatory standards where applicable.
+
+* **Contract and compatibility testing**
+
+  * Introduce consumer-driven contract tests.
+  * Guarantee backward compatibility across releases.
+
