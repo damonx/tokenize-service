@@ -1,8 +1,8 @@
 
 plugins {
     java
-    id("org.springframework.boot") version "4.0.2"
-    id("io.spring.dependency-management") version "1.1.4"
+    id("org.springframework.boot") version "3.4.2"
+    id("io.spring.dependency-management") version "1.1.6"
     id("jacoco")
 }
 
@@ -29,9 +29,13 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.assertj:assertj-core:3.25.3")
+    testImplementation("org.springframework.boot:spring-boot-starter-webflux")
+    testImplementation("io.projectreactor:reactor-test")
+    testImplementation("org.assertj:assertj-core:3.27.7")
+    testImplementation("org.junit.jupiter:junit-jupiter:6.0.0")
     testCompileOnly("org.projectlombok:lombok")
     testAnnotationProcessor("org.projectlombok:lombok")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.0")
 }
 
 jacoco {
@@ -48,9 +52,9 @@ tasks.test {
 
     testLogging {
         events("passed", "skipped", "failed")
-        showStandardStreams = true
-        showCauses = true
-        showStackTraces = true
+        showStandardStreams = false
+        showCauses = false
+        showStackTraces = false
         exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
     }
 

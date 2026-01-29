@@ -1,0 +1,1 @@
+INSERT INTO tokens (token, account_number) VALUES ('uS8vN3dph7ttuKMHbuk4Hsbbln1aAvLY', '1234 5678 9012 3456');

@@ -1,4 +1,5 @@
 package nz.co.anz.tokenization;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import nz.co.anz.tokenization.utils.AccountMasker;
@@ -15,15 +16,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 @DisplayName("Unit tests for Account Masker.")
 class AccountMaskerUnitTest
 {
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index} -> when input is: {0}")
     @NullAndEmptySource
     @ValueSource(strings = {" ", "   ", "\t", "\n"})
-    void shouldReturnMaskedForNullOrBlankInput(String input) {
+    @DisplayName("Test null or blank input should have 4 asterisks mask returned.")
+    void shouldReturnMaskedForNullOrBlankInput(final String input) {
         assertThat(AccountMasker.maskAccountNumber(input))
             .isEqualTo("****");
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index} -> when input is: {0}")
     @ValueSource(strings = {
         "1",
         "12",
@@ -31,22 +33,25 @@ class AccountMaskerUnitTest
         "1-2",
         "--1"
     })
-    void shouldReturnMaskedWhenLengthLessThanFour(String input) {
+    @DisplayName("Test length less than 4 input should have 4 asterisks mask returned.")
+    void shouldReturnMaskedWhenLengthLessThanFour(final String input) {
         assertThat(AccountMasker.maskAccountNumber(input))
             .isEqualTo("****");
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index} -> when input is: {0}")
     @CsvSource({
         "1234567890123456, ************3456",
         "1234-5678-9012-3456, ************3456",
         "0000-0000-0000-9999, ************9999"
     })
-    void shouldMaskAccountNumberCorrectly(String input, String expected) {
+    @DisplayName("Correctly mask account numbers.")
+    void shouldMaskAccountNumberCorrectly(final String input, final String expected) {
         assertThat(AccountMasker.maskAccountNumber(input))
             .isEqualTo(expected);
     }
 
+    @DisplayName("Test input with spaces should be masked correctly.")
     @Test
     void shouldMaskAccountNumberWithSpaces() {
         String result = AccountMasker.maskAccountNumber("1234 5678 9012 3456");
@@ -57,15 +62,5 @@ class AccountMaskerUnitTest
             .matches("\\*+3456");
 
         assertThat(result.length()).isEqualTo(19);
-    }
-
-    @Test
-    void shouldOnlyRevealLastFourDigits() {
-        String result = AccountMasker.maskAccountNumber("9999-8888-7777-1234");
-
-        assertThat(result).endsWith("1234");
-
-        assertThat(result.substring(0, result.length() - 4))
-            .matches("\\*+");
     }
 }

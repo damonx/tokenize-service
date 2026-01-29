@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -36,7 +37,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ProblemDetail handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
+    public ProblemDetail handleMethodArgumentNotValid(final MethodArgumentNotValidException ex) {
 
         final List<String> errors = ex.getBindingResult()
             .getAllErrors()
@@ -58,6 +59,18 @@ public class GlobalExceptionHandler {
             .toList();
 
         final ProblemDetail problemDetail = getProblemDetail(errors);
+
+        return problemDetail;
+    }
+
+    @ExceptionHandler({HttpMessageNotReadableException.class})
+    public ProblemDetail handleMissingRequestBody(final Exception ex) {
+        logger.warn("Request body is missing or unreadable", ex);
+
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+        problemDetail.setTitle("Validation Error");
+        problemDetail.setDetail("Request body is required");
+        problemDetail.setProperty("timestamp", Instant.now());
 
         return problemDetail;
     }

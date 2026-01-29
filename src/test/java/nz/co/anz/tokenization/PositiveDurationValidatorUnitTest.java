@@ -34,7 +34,7 @@ class PositiveDurationValidatorUnitTest
     }
 
     @Test
-    @DisplayName("Valid redis cache ttl should return true.")
+    @DisplayName("Valid valid ttl should return true.")
     void validCacheDurationConfiguration()
     {
         // GIVEN

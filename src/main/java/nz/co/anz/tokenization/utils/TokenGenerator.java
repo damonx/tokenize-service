@@ -10,10 +10,6 @@ import java.security.SecureRandom;
  * attacks, which is especially important in security-adjacent domains such
  * as tokenization of sensitive financial identifiers.
  * </p>
- *
- * <p>
- * This class is designed as a static utility and is therefore not instantiable.
- * </p>
  */
 public final class TokenGenerator
 {

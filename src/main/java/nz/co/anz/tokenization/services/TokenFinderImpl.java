@@ -10,6 +10,10 @@ public class TokenFinderImpl implements TokenFinder {
 
     private final TokenRepository repository;
 
+    /**
+     * Constructor.
+     * @param repository the token repository.
+     */
     public TokenFinderImpl(final TokenRepository repository)
     {
         this.repository = repository;
