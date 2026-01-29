@@ -126,7 +126,7 @@ class DetokenizeIntegrationTest {
         final List<String> accounts = result.getResponseBody();
         assertThat(accounts).containsExactly("1234 5678 9012 3456");
 
-        // Verify cache populated
+        // THEN Verify cache populated
         final Cache cache = cacheManager.getCache("tokenToAccount");
 
         assertThat(cache).isNotNull();
@@ -156,7 +156,7 @@ class DetokenizeIntegrationTest {
         final List<String> accounts = result.getResponseBody();
         assertThat(accounts).containsExactly("1234 5678 9012 3456");
 
-        // Verify the entry in the cache is intact.
+        // THEN Verify the entry in the cache is intact.
         assertThat(cache).isNotNull();
         assertThat(cache.get("uS8vN3dph7ttuKMHbuk4Hsbbln1aAvLY"))
             .extracting(Cache.ValueWrapper::get)
@@ -202,7 +202,7 @@ class DetokenizeIntegrationTest {
         final List<String> accounts = result.getResponseBody();
         assertThat(accounts).containsExactly("1111 2222 3333 4444", "5555 6666 7777 8888");
 
-        // Verify cache populated for both tokens
+        // THEN Verify cache populated for both tokens
         final Cache cache = cacheManager.getCache("tokenToAccount");
 
         assertThat(cache).isNotNull();

@@ -2,6 +2,9 @@ package nz.co.anz.tokenization.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * Util class to mask a given account.
+ */
 public final class AccountMasker
 {
     private AccountMasker()

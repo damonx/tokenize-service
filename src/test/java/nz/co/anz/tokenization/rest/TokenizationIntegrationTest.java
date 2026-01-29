@@ -123,7 +123,7 @@ public class TokenizationIntegrationTest {
             .allSatisfy(token -> assertThat(token)
                 .as("Token %s does not match the expected 32-char alphanumeric format", token)
                 .matches(TOKEN_REGEX));
-        // Verifies that correct account to token mapping has been persisted.
+        // THEN Verifies that correct account to token mapping has been persisted.
         final Optional<TokenEntity> entity = tokenRepository.findByAccountNumber("1234 5678 9012 3456");
         assertThat(entity).isPresent();
         assertThat(entity.get().getToken()).isEqualTo(tokens.getFirst());

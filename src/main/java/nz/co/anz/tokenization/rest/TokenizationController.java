@@ -31,7 +31,7 @@ public class TokenizationController {
     /**
      * Improvement: this endpoint should be authenticated/authorised, and also rate limited.
      * @param accountNumbers
-     * @return
+     * @return a list of tokens.
      */
     @PostMapping("/tokenize")
     public List<String> tokenize(@RequestBody @NotEmpty @Size(max = 50, message = "Maximum 50 account numbers per request")
@@ -41,6 +41,7 @@ public class TokenizationController {
 
     /**
      * Improvement: this endpoint should be authenticated/authorised, and also rate limited.
+     * @return a list of accounts.
      */
     @PostMapping("/detokenize")
     public List<String> detokenize(@RequestBody @NotEmpty @Size(max = 50, message = "Maximum 50 tokens per request")

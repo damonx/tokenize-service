@@ -39,6 +39,4 @@ public final class TokenGenerator
         }
         return sb.toString();
     }
-
-
 }

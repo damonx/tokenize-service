@@ -1,4 +1,3 @@
-
 package nz.co.anz.tokenization.data;
 
 import org.springframework.data.jpa.repository.JpaRepository;
