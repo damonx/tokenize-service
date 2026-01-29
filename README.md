@@ -53,6 +53,10 @@ H2 In-Memory Database
 ---
 ## Detokenization Flow (with Cache)
 ![Observability Diagram](./detokenization-flow.png)
+
+## Tokenization Flow
+![Observability Diagram](./tokenization-flow.png)
+
 ---
 
 ## API Endpoints
