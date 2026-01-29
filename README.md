@@ -14,20 +14,24 @@ The solution is intentionally **not production‑ready** and omits concerns such
 
 The application follows a standard Spring Boot layered architecture:
 
-```
+```bash
 Client
   │
   ▼
 REST Controller
   │
   ▼
-TokenizationService (business logic)
+Service Layer
+  │
+  ▼
+Cache (Caffeine)
   │
   ▼
 JPA Repository
   │
   ▼
-H2 In‑Memory Database
+H2 In-Memory Database
+
 ```
 
 ### Key Components
@@ -46,7 +50,9 @@ H2 In‑Memory Database
 
 * **Spring Cache**
   Improves detokenization performance by avoiding repeated database lookups.
-
+---
+## Detokenization Flow (with Cache)
+![Observability Diagram](./detokenization-flow.png)
 ---
 
 ## API Endpoints
