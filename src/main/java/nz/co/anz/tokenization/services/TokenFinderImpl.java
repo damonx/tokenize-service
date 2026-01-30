@@ -5,6 +5,9 @@ import nz.co.anz.tokenization.exception.TokenNotFoundException;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
+/**
+ * Default implementation of {@link TokenFinder}.
+ */
 @Component
 public class TokenFinderImpl implements TokenFinder {
 
