@@ -259,9 +259,6 @@ curl -Sv localhost:8080/detokenize -H "Content-Type: application/json" -d '["3vD
 ```bash
 ./gradlew test
 ```
----
-Here’s a **README-ready version**, reorganised into **Short-term / Medium-term / Long-term** phases.
-The language is concise, professional, and suitable for technical reviewers or architects.
 
 ---
 

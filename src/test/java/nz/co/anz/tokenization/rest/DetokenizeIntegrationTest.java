@@ -138,7 +138,7 @@ class DetokenizeIntegrationTest {
     @Test
     @DisplayName("Detokenize successfully resolves a single token and cache hit.")
     void detokenizeResolvesSingleTokenHitsCacheSuccessfully() {
-        // GIVEN There is an existing token to account record in database table.
+        // GIVEN
         // There is an entry in the cache.
         final List<String> request = List.of("uS8vN3dph7ttuKMHbuk4Hsbbln1aAvLY");
         final Cache cache = cacheManager.getCache("tokenToAccount");
