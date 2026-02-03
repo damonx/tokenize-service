@@ -26,7 +26,7 @@ import org.springframework.context.annotation.Configuration;
  * <p>Eviction and removal events are logged for operational visibility, and
  * cache statistics are recorded to support monitoring and performance analysis.</p>
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class CacheConfiguration
 {
     private static final Logger logger = LogManager.getLogger(CacheConfiguration.class);
