@@ -5,8 +5,7 @@ import nz.co.anz.tokenization.exception.TokenNotFoundException;
 /**
  * Service interface responsible for resolving a token into its original value.
  */
-public interface TokenFinder
-{
+public interface TokenFinder {
     /**
      * Resolves the given token to its original value.
      *
