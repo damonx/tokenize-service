@@ -1,4 +1,3 @@
-
 package nz.co.anz.tokenization.rest;
 
 import jakarta.validation.constraints.NotEmpty;
@@ -29,7 +28,7 @@ public class TokenizationController {
     }
 
     /**
-     * Improvement: this endpoint should be authenticated/authorised, and also rate limited.
+     * Improvement: this endpoint should be authenticated and authorised if public, and also rate limited.
      * @param accountNumbers
      * @return a list of tokens.
      */
@@ -40,7 +39,7 @@ public class TokenizationController {
     }
 
     /**
-     * Improvement: this endpoint should be authenticated/authorised, and also rate limited.
+     * Improvement: this endpoint should be authenticated and authorised if public, and also rate limited.
      * @return a list of accounts.
      */
     @PostMapping("/detokenize")
