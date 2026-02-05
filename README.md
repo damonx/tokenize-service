@@ -134,7 +134,15 @@ Caching is intentionally scoped to detokenization only, keeping token creation l
 
 ### Prerequisites
 
-* Java 21
+* Java 21 (JRE 21 at least, to run the executable JAR)
+
+- Example
+```bash
+➜ java -version
+java version "21.0.3" 2024-04-16 LTS
+Java(TM) SE Runtime Environment (build 21.0.3+7-LTS-152)
+Java HotSpot(TM) 64-Bit Server VM (build 21.0.3+7-LTS-152, mixed mode, sharing)
+```
 
 ### Run Locally
 
