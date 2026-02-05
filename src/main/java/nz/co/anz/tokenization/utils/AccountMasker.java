@@ -27,7 +27,7 @@ public final class AccountMasker
      * @param accountNumber The original account number, may be null or empty
      * @return Masked account number showing only last 4 digits
      */
-    public static String maskAccountNumber(String accountNumber) {
+    public static String maskAccountNumber(final String accountNumber) {
         if (StringUtils.isBlank(accountNumber)) {
             return "****";
         }
