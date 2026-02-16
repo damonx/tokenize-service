@@ -1,4 +1,4 @@
-# Tokenization Service (Spring Boot)
+# Tokenization Service over Spring Boot
 
 ## Project Objective
 
