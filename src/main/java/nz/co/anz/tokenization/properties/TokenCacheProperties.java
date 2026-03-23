@@ -1,13 +1,13 @@
 package nz.co.anz.tokenization.properties;
 
-import jakarta.validation.constraints.Positive;
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
 import nz.co.anz.tokenization.validators.PositiveDuration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.convert.DurationUnit;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
+import jakarta.validation.constraints.Positive;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 
 /** Cache related properties. */
 @Component

@@ -1,9 +1,5 @@
 package nz.co.anz.tokenization.exception;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
-import java.time.Instant;
-import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -13,10 +9,15 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import java.time.Instant;
+import java.util.List;
+
 /**
  * Global REST exception handler for the Tokenization service.
  *
- * <p>This class centralises exception handling across all REST controllers and converts application
+ * <p>This class centralises exception handling across all REST controllers and converts the application
  * and framework exceptions into consistent {@link org.springframework.http.ProblemDetail}
  * responses.
  *

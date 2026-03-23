@@ -1,9 +1,9 @@
 package nz.co.anz.tokenization.configurations;
 
+import nz.co.anz.tokenization.properties.TokenCacheProperties;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.Scheduler;
-import nz.co.anz.tokenization.properties.TokenCacheProperties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.cache.CacheManager;
