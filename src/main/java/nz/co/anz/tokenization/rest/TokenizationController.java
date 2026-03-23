@@ -27,7 +27,7 @@ public class TokenizationController {
    * Improvement: this endpoint should be authenticated and authorised if public, and also rate
    * limited.
    *
-   * @param accountNumbers
+   * @param accountNumbers the account numbers.
    * @return a list of tokens.
    */
   @PostMapping("/tokenize")

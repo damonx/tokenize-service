@@ -18,10 +18,10 @@ public class TokenCacheProperties {
   @DurationUnit(ChronoUnit.MINUTES)
   private Duration ttl;
 
-  @Positive 
+  @Positive
   private int maximumSize;
 
-  @Positive 
+  @Positive
   private int initialCapacity;
 
   public Duration getTtl() {
